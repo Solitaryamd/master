@@ -57,3 +57,34 @@ $ git commit  -a                  //自动将已跟踪过的文件暂存起来�
 
 移除文件：
 $ rm 文件名                         //如果只是单纯的从工作目录手工删除文件，运行“git status”时就会在“未暂存”清单中看到
+
+查看分支：
+$ git branch --list
+创建新的分支：
+$ git branch testing
+切换到新的分支：
+$ git checkout testing
+
+分支的创建与合并：
+$ git checkout -b iss53             //$  相当于运行两条命令：git branch iss53,$ git checkout iss53
+切换到主分支：
+$ git checkout master
+出现问题，进行修补：
+$ git checkout -b hotfix            //是以master分支为父节点向后进行移动的
+合并hotfix和master
+$ git merge hotfix                    //master和hotfix指向同一个快照
+删除hotfix
+$ git branch -d hotfix
+切换到iss53上继续解决之前的问题
+$ git checkout  iss53 
+问题解决完成后，合并master和iss53
+$ git checkout master
+$ git merge iss53
+$ git branch -d hotfix
+遇到冲突时的分支合并：
+$ git merge iss53                                //修改iss53时，修改到了hotfix部分
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.       //git做了合并，但是没有提交，它会停下来等待你处理冲突。
+$ git status                                        //查看冲突出现位置以及详细信息
+问题处理完之后再运行一次git status来确认所有冲突已经解决，就可以用git commit来提交。
