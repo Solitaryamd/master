@@ -1,0 +1,59 @@
+登录：
+$ git config --global user.name "Solitaryamd"
+$ git config --global user.email 1234567890@163.com
+
+查看当前：
+$ git config --list
+
+查看当前登录用户：
+$ git config user.name
+
+获取帮助：
+$ git help config
+
+Git 收取的是项目历史的所有数据（每一个文件的每一个版本），服务器上有的数据克隆之后本地也都有了。
+
+在当前目录下创建一个名为grit的目录（其中包含一个 .git 的目录，用于保存下载下来的所有版本记录，然后从中取出最新版本的文件拷贝）
+$ git clone git://github.com/schacon/grit.git
+
+在克隆的时候，自定义要新建的项目目录名称：
+$ git clone git://github.com/schacon/grit.git mygrit
+
+检查当前文件所处状态：
+$ git status
+
+跟踪新文件：
+$ git add README        
+//关于LF will be replaced by CRLF in BubbleSort.cpp.报错。输入：git config autocrlf false
+
+从仓库中拉取的文件的状态：已跟踪，暂存区，已修改
+在git打开路径下新建的文件：未跟踪
+git add 命令可以使 未跟踪的文件转为 已跟踪。
+git reset 命令可以使文件被还原为未跟踪状态。
+
+暂存更新：
+运行了 git add 之后又作了修订的文件，需要重新运行 git add 把最新版本重新暂存起来：
+$ git add benchmarks.rb
+
+创建一个名为 .gitignore 的文件，列出要忽略的文件模式
+$ cat .gitignore
+*.[oa]                          //忽略以.o或者.a结尾的文件
+*~                              //忽略以~结尾的文件
+
+查看已暂存和未暂存的更新：
+$ git diff
+
+查看已暂存和上次提交间的更新：
+$ git diff --cached
+或者
+$ git diff --staged
+
+提交更新：
+$ git commit                        //启动文本编辑器以便输入本次提交的说明
+$ git commit -m "注释信息"   //加参数 -m 提交注释信息
+
+跳过使用暂存区域：
+$ git commit  -a                  //自动将已跟踪过的文件暂存起来一并提交
+
+移除文件：
+$ rm 文件名                         //如果只是单纯的从工作目录手工删除文件，运行“git status”时就会在“未暂存”清单中看到
